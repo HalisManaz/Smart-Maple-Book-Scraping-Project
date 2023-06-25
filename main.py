@@ -257,3 +257,16 @@ class BookScraper:
                     continue
                 else:
                     self.upload_to_mongodb(title, author, publisher, price)
+
+
+def main():
+    base_url_kitapyurdu = "https://www.kitapyurdu.com/index.php?route=product/search&filter_name=Python&filter_in_stock=0&limit=100"
+    base_url_kitapsepeti = "https://www.kitapsepeti.com/arama?q=Python&stock=1"
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
+    }
+    urls = [base_url_kitapyurdu, base_url_kitapsepeti]
+
+    for url in urls:
+        with BookScraper(url, headers) as scraper:
+            scraper.step()
