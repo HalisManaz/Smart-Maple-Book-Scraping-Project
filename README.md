@@ -101,3 +101,6 @@ The following documentation is available in the project directory:
 The current implementation of the application is fairly basic and there is room for several improvements. For example, the application could be enhanced with the following feature:
 
 - **User Interface**: The application could include a simple user interface that allows users to start and stop the web scraping process, choose which websites to scrape
+
+## **License**
+This project is licensed under the [<u>MIT License</u>](https://opensource.org/license/mit/)
