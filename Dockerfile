@@ -10,3 +10,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . /app
 
+# Run the command on container startup
+CMD ["python3" , "main.py"]
