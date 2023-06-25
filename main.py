@@ -43,3 +43,24 @@ class BookScraper:
                 )
             )
             self.logger.addHandler(handler)
+
+    def __enter__(self) -> "BookScraper":
+        """
+        Enter the context of the BookScraper class.
+
+        Returns:
+            BookScraper: The BookScraper instance.
+        """
+        self.connect_mongo()
+        return self
+
+    def __exit__(self, exc_type, exc_value, traceback) -> None:
+        """
+        Exit the context of the BookScraper class.
+
+        Args:
+            exc_type: The type of the exception.
+            exc_value: The value of the exception.
+            traceback: The traceback of the exception.
+        """
+        self.disconnect_mongo()
