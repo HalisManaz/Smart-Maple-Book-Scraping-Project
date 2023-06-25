@@ -95,3 +95,9 @@ The following documentation is available in the project directory:
 * **Dockerfile**: This file is used for creating a Docker image for the application. It specifies the base Python image, sets the working directory, copies the requirements.txt file and installs the requirements, and finally sets the command to run the application.
 * **.gitignore**: A file that specifies files and folders to be ignored by Git. Its useful for ensuring that unwanted files, like those generated during runtime or personal IDE settings, don't get committed to the Git repository.
 * **README.md**: The file you are currently reading. It provides a high-level overview of the project, its setup, and instructions for running and using the application.
+
+## **Future Improvements**
+
+The current implementation of the application is fairly basic and there is room for several improvements. For example, the application could be enhanced with the following feature:
+
+- **User Interface**: The application could include a simple user interface that allows users to start and stop the web scraping process, choose which websites to scrape
