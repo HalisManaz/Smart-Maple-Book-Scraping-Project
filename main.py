@@ -208,3 +208,23 @@ class BookScraper:
         if book_count > 0:
             self.logger.info(f"Already exists in the database - {title}.")
         return book_count > 0
+
+    def upload_to_mongodb(
+        self,
+        title: str,
+        author: str,
+        publisher: str,
+        price: float,
+    ) -> None:
+        self.collection.insert_one(
+            {
+                "title": title,
+                "author": author,
+                "publisher": publisher,
+                "price": price,
+            }
+        )
+        self.logger.info(
+            f"Kitap {self.num_books}: {title} | Yazar: {author} | Yayınevi: {publisher} | Fiyat: {price}"
+        )
+        self.num_books += 1
