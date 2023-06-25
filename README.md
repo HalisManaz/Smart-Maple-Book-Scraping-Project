@@ -83,3 +83,15 @@ All these steps are encapsulated in the `BookScraper` class.
 - **Dockerized Application**: The Python application and MongoDB are containerized using Docker, ensuring that the application runs in the same environment regardless of where it is deployed.
 
 - **Error Handling**: The application includes error handling for common issues like connection errors, ensuring that the application can recover from these issues and continue running.
+
+
+
+## **Documentation**
+The following documentation is available in the project directory:
+
+* **requirements.txt**: A list of Python dependencies required to run the application.
+* **docker-compose.yml**: The Docker Compose configuration file for the application.
+* **main.py**: The primary Python script that houses the scraping logic and database interaction. It orchestrates the scraping of the book websites and populates the MongoDB with relevant data.
+* **Dockerfile**: This file is used for creating a Docker image for the application. It specifies the base Python image, sets the working directory, copies the requirements.txt file and installs the requirements, and finally sets the command to run the application.
+* **.gitignore**: A file that specifies files and folders to be ignored by Git. Its useful for ensuring that unwanted files, like those generated during runtime or personal IDE settings, don't get committed to the Git repository.
+* **README.md**: The file you are currently reading. It provides a high-level overview of the project, its setup, and instructions for running and using the application.
