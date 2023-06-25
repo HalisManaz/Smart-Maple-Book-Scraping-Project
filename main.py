@@ -179,3 +179,32 @@ class BookScraper:
 
             if len(titles) < 100:
                 self.repated_page += 1
+
+    def check_database(
+        self, title: str, author: str, publisher: str, session=None
+    ) -> bool:
+        """
+        Check if a book with the given title, author, and publisher exists in the database.
+
+        Args:
+            title (str): Title of the book.
+            author (str): Author of the book.
+            publisher (str): Publisher of the book.
+            session (pymongo.client_session.ClientSession, optional): MongoDB client session. Defaults to None.
+
+        Returns:
+            bool: True if the book exists in the database, False otherwise.
+        """
+        query = {"title": title, "author": author, "publisher": publisher}
+        if session is not None and isinstance(
+            session, pymongo.client_session.ClientSession
+        ):
+            book_count = self.collection.count_documents(query, session=session)
+        if author == "Unknown":
+            return True
+        else:
+            book_count = self.collection.count_documents(query)
+
+        if book_count > 0:
+            self.logger.info(f"Already exists in the database - {title}.")
+        return book_count > 0
