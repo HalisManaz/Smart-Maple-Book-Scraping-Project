@@ -128,23 +128,26 @@ class BookScraper:
         self, title: str, author: str, publisher: str, price: float
     ) -> bool:
         if self.collection == self.db["kitapsepeti"]:
+            title = title.get_text(strip=True)
+            if not author:
+                author = ["Unknown"]
+            else:
+                author = [author_name.get_text(strip=True) for author_name in author]
             price = price.get_text(strip=True)[:-3]
             price = price.strip().replace(".", "_")
             price = float(price.strip().replace(",", "."))
-            author = author.get_text(strip=True)
             publisher = publisher.get_text(strip=True)
-            title = title.get_text(strip=True)
 
         if self.collection == self.db["kitapyurdu"]:
             title = title.find("span").text.strip()
+            author = author.find_all("a", {"class": "alt"})
+            if not author:
+                author = ["Unknown"]
+            else:
+                author = [author_name.text.strip() for author_name in author]
             price = price.find("span", {"class": "value"})
             price = price.text.strip().replace(".", "_")
             price = float(price.strip().replace(",", "."))
-            author = author.find("a", {"class": "alt"})
-            if not author:
-                author = "Unknown"
-            else:
-                author = author.text.strip()
             publisher = publisher.find("span").find("a").find("span").text
 
         return title, author, publisher, price
