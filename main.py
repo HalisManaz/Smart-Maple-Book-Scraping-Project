@@ -77,6 +77,37 @@ class BookScraper:
         except Exception as e:
             self.logger.error(f"Error connecting to MongoDB: {e}")
 
+    def send_email(self, recipient_email):
+        """
+        Sends an email to the specified recipient with the results of the scraping.
+
+        Args:
+            recipient_email (str): The email address to send the email to.
+
+        Returns:
+            None
+        """
+
+        # create message
+        self.logger.info(f"Sending email to {recipient_email}")
+        message = MIMEText(
+            f"Scraping finished! Number of books: {str(self.num_books-1)} scraped from {self.url}."
+        )
+
+        if self.collection == self.db["kitapsepeti"]:
+            message["Subject"] = f"Kitapsepeti Scraping Finished."
+        if self.collection == self.db["kitapyurdu"]:
+            message["Subject"] = f"Kitapyurdu Scraping Finished."
+
+        message["From"] = os.getenv("EMAIL_ADDRESS")
+        message["To"] = recipient_email
+
+        # send message
+        with smtplib.SMTP("smtp.office365.com", 587) as smtp:
+            smtp.starttls()
+            smtp.login(os.getenv("EMAIL_ADDRESS"), os.getenv("EMAIL_PASSWORD"))
+            smtp.send_message(message)
+
     def disconnect_mongo(self) -> None:
         """
         Disconnect from the MongoDB instance.
@@ -119,6 +150,7 @@ class BookScraper:
 
             if self.stop_condition(url, titles):
                 self.logger.info(f"Scraping finished.")
+                self.send_email(os.getenv("EMAIL_RECEIVER"))
                 return None, None, None, None
 
             self.page_num += 1
