@@ -219,7 +219,15 @@ class BookScraper:
                 )
                 return True
 
-            if len(titles) < 100:
+            # parse the URL
+            parsed_url = urlparse(url)
+
+            # extract the query parameters as a dictionary
+            query_params = parse_qs(parsed_url.query)
+
+            # extract the limit value
+            limit = int(query_params["limit"][0])
+            if len(titles) < limit:
                 self.repated_page += 1
 
     def check_database(
