@@ -273,7 +273,11 @@ def main():
 
 
 if __name__ == "__main__":
-    schedule.every(1).minutes.do(main)
+    # Every minute
+    # schedule.every(1).minutes.do(main)
+
+    # Every day at 00:00
+    schedule.every().day.at("00:00").do(main)
 
     while True:
         schedule.run_pending()
