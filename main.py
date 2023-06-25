@@ -222,7 +222,7 @@ class BookScraper:
         self.collection.insert_one(
             {
                 "title": title,
-                "author": author,
+                "author": [author_name for author_name in author],
                 "publisher": publisher,
                 "price": price,
             }
