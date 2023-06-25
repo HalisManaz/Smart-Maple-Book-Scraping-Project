@@ -1,11 +1,18 @@
 import logging
+import os
+import smtplib
 import time
+from email.mime.text import MIMEText
+from urllib.parse import parse_qs, urlparse
+
 import pymongo
 import requests
 from bs4 import BeautifulSoup
-from urllib.parse import urlparse, parse_qs
-from pymongo import MongoClient
+from dotenv import load_dotenv
 import schedule
+from pymongo import MongoClient
+
+load_dotenv()
 
 
 class BookScraper:
@@ -299,7 +306,7 @@ def main():
     base_url_kitapyurdu = "https://www.kitapyurdu.com/index.php?route=product/search&filter_name=Python&filter_in_stock=0&limit=100"
     base_url_kitapsepeti = "https://www.kitapsepeti.com/arama?q=Python&stock=1"
     headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
+        "User-Agent": os.getenv("HEADERS"),
     }
     urls = [base_url_kitapyurdu, base_url_kitapsepeti]
 
