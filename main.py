@@ -203,7 +203,7 @@ class BookScraper:
             session, pymongo.client_session.ClientSession
         ):
             book_count = self.collection.count_documents(query, session=session)
-        if author == "Unknown":
+        if author == ["Unknown"]:
             return True
         else:
             book_count = self.collection.count_documents(query)
