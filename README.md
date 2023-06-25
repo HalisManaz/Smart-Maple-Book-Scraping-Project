@@ -23,3 +23,8 @@ The acquired data is stored in a `MongoDB` database.
     - README.md
     - requirements.txt
     - .gitignore
+
+
+## **Prerequisites**
+* Docker
+* Docker Compose
