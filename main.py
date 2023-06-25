@@ -227,8 +227,9 @@ class BookScraper:
                 "price": price,
             }
         )
+        author_repr = ", ".join(author)
         self.logger.info(
-            f"Kitap {self.num_books}: {title} | Yazar: {author} | Yayınevi: {publisher} | Fiyat: {price}"
+            f"Kitap {self.num_books}: {title} | Yazar: {author_repr} | Yayınevi: {publisher} | Fiyat: {price}"
         )
         self.num_books += 1
 
