@@ -1,0 +1,9 @@
+version: '3.4'
+
+services:
+  smartmaple_mongo:
+    image: mongo
+    container_name: smartmaple_mongo
+    ports:
+      - "27017:27017"
+
