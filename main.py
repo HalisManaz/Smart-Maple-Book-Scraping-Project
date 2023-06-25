@@ -64,3 +64,21 @@ class BookScraper:
             traceback: The traceback of the exception.
         """
         self.disconnect_mongo()
+
+    def connect_mongo(self) -> None:
+        """
+        Connect to the MongoDB instance.
+        """
+        try:
+            # Check connection to MongoDB
+            # Check if the MongoDB instance is available
+            self.client.admin.command("ping")
+            self.logger.info("Connected to MongoDB.")
+        except Exception as e:
+            self.logger.error(f"Error connecting to MongoDB: {e}")
+
+    def disconnect_mongo(self) -> None:
+        """
+        Disconnect from the MongoDB instance.
+        """
+        self.client.close()
