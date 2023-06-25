@@ -71,3 +71,15 @@ All these steps are encapsulated in the `BookScraper` class.
 <p align="center">
   <img src="https://showme.redstarplugin.com/d/FJvuvPsB" alt="TURK AI Image" width="800">
 </p>
+
+## **Application Features**
+
+- **Scraping Multiple Websites**: The application is designed to scrape data from multiple websites. Currently, it scrapes data from two popular book websites, but it can be easily extended to scrape data from more websites.
+
+- **Scheduling**: The application uses the `schedule` library to run the web scraping tasks at specific times. By default, the application is scheduled to run every day at 12 AM.
+
+- **Logging**: The application uses Python's built-in `logging` module to log messages that are useful for understanding the flow of the program and for debugging.
+
+- **Dockerized Application**: The Python application and MongoDB are containerized using Docker, ensuring that the application runs in the same environment regardless of where it is deployed.
+
+- **Error Handling**: The application includes error handling for common issues like connection errors, ensuring that the application can recover from these issues and continue running.
