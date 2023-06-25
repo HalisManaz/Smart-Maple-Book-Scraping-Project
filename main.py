@@ -270,3 +270,11 @@ def main():
     for url in urls:
         with BookScraper(url, headers) as scraper:
             scraper.step()
+
+
+if __name__ == "__main__":
+    schedule.every(1).minutes.do(main)
+
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
