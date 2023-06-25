@@ -65,3 +65,9 @@ The application follows these general steps:
 6. The application also checks if a book already exists in the database before inserting it, in order to prevent duplicates.
 
 All these steps are encapsulated in the `BookScraper` class.
+
+## **UML Diagram**
+
+<p align="center">
+  <img src="https://showme.redstarplugin.com/d/FJvuvPsB" alt="TURK AI Image" width="800">
+</p>
