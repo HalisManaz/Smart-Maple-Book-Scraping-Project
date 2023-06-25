@@ -14,3 +14,12 @@ This project aims to develop a Python application that scrapes product data from
 - Price of the book
 
 The acquired data is stored in a `MongoDB` database.
+
+## **Project Structure**
+- app/
+    - main.py
+    - Dockerfile
+    - docker-compose.yml
+    - README.md
+    - requirements.txt
+    - .gitignore
