@@ -1,6 +1,9 @@
 # Use an official Python runtime as a parent image
 FROM python:3.11-slim
 
+# Set the timezone to Istanbul
+ENV TZ=Europe/Istanbul
+
 WORKDIR /app
 
 COPY requirements.txt ./
