@@ -148,3 +148,34 @@ class BookScraper:
             publisher = publisher.find("span").find("a").find("span").text
 
         return title, author, publisher, price
+
+    def stop_condition(self, url: str, titles: list) -> bool:
+        if "kitapsepeti" in url:
+            response = requests.get(url)
+
+            # Parse the URL
+            parsed_url = urlparse(response.url)
+
+            # Get the query parameters
+            query_params = parse_qs(parsed_url.query)
+
+            # Extract the value of the 'pg' parameter
+            pg_value = query_params.get("pg", [None])[0]
+
+            if self.page_num > int(pg_value):
+                self.logger.info(
+                    f"{self.num_books-1} books scraped from kitapsepeti.com."
+                )
+                return True
+            else:
+                return False
+
+        elif "kitapyurdu" in url:
+            if self.repated_page == 2:
+                self.logger.info(
+                    f"{self.num_books-1} books scraped from kitapsepeti.com."
+                )
+                return True
+
+            if len(titles) < 100:
+                self.repated_page += 1
