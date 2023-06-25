@@ -45,3 +45,9 @@ The project uses the following Python libraries:
 5. **logging**: Used for generating log messages for debugging and understanding the flow of the program.
 
 The project is designed to be run in a Docker environment. Docker is used for setting up isolated containers for the Python application and MongoDB. Docker Compose is used to manage these multiple containers as a single service.
+
+## **Running the Application**
+
+The application is designed to be run in a Docker environment. You need to have Docker and Docker Compose installed to run the application. To start the application, navigate to the project directory in your terminal and run the command `docker-compose up`.
+
+This will start the two Docker containers: one for the Python application and one for MongoDB. The Python application will start scraping data from the specified websites and store the data in the MongoDB database.
