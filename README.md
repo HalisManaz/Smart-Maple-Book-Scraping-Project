@@ -51,3 +51,17 @@ The project is designed to be run in a Docker environment. Docker is used for se
 The application is designed to be run in a Docker environment. You need to have Docker and Docker Compose installed to run the application. To start the application, navigate to the project directory in your terminal and run the command `docker-compose up`.
 
 This will start the two Docker containers: one for the Python application and one for MongoDB. The Python application will start scraping data from the specified websites and store the data in the MongoDB database.
+
+
+## **How the Application Works**
+
+The application follows these general steps:
+
+1. Connects to the MongoDB database.
+2. Makes a GET request to the specified web page.
+3. Parses the HTML content of the page and extracts the required data (book title, authors, publisher, and price).
+4. Stores the extracted data in the MongoDB database.
+5. Repeats the process for the next page until all the pages have been scraped.
+6. The application also checks if a book already exists in the database before inserting it, in order to prevent duplicates.
+
+All these steps are encapsulated in the `BookScraper` class.
