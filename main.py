@@ -82,3 +82,44 @@ class BookScraper:
         Disconnect from the MongoDB instance.
         """
         self.client.close()
+
+    def scrape_books(self) -> bool:
+        """
+        Scrape books from website.
+
+        Returns:
+            bool: True if there are more pages to scrape, False otherwise.
+        """
+        self.logger.info("Book scraping started..")
+
+        while True:
+            if self.collection == self.db["kitapsepeti"]:
+                url = f"{self.url}&pg={self.page_num}"
+                self.logger.info(f"Scraping page: {url}..\n\n")
+                r = requests.get(url=url, headers=self.headers).content
+                soup = BeautifulSoup(r, "html.parser")
+
+                titles = soup.find_all(
+                    "a", class_="fl col-12 text-description detailLink"
+                )
+                authors = soup.find_all("a", id="productModelText")
+                publishers = soup.find_all("a", class_="col col-12 text-title mt")
+                prices = soup.find_all("div", class_="col col-12 currentPrice")
+
+            elif self.collection == self.db["kitapyurdu"]:
+                url = f"{self.url}&page={self.page_num}"
+                self.logger.info(f"Scraping page: {url}..\n\n")
+                r = requests.get(url=url, headers=self.headers).content
+                soup = BeautifulSoup(r, "html.parser")
+
+                prices = soup.find_all("div", {"class": "price-new"})
+                authors = soup.find_all("div", {"class": "author compact ellipsis"})
+                publishers = soup.find_all("div", {"class": "publisher"})
+                titles = soup.find_all("div", {"class": "name ellipsis"})
+
+            if self.stop_condition(url, titles):
+                self.logger.info(f"Scraping finished.")
+                return None, None, None, None
+
+            self.page_num += 1
+            return titles, authors, publishers, prices
