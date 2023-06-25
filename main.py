@@ -22,7 +22,7 @@ class BookScraper:
         self.num_books = 1
         self.page_num = 1
         self.repated_page = 0
-        self.client = MongoClient("mongodb://localhost:27017/")
+        self.client = MongoClient("mongodb://smartmaple_mongo:27017/")
         self.db = self.client["smartmaple"]
         if "kitapsepeti" in url:
             self.collection = self.db["kitapsepeti"]
