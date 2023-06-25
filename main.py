@@ -228,3 +228,32 @@ class BookScraper:
             f"Kitap {self.num_books}: {title} | Yazar: {author} | Yayınevi: {publisher} | Fiyat: {price}"
         )
         self.num_books += 1
+
+    def step(self) -> bool:
+        """
+        Execute the appropriate scraping method based on the website provided.
+
+        Returns:
+            bool: True if there are more pages to scrape, False otherwise.
+        """
+        while True:
+            titles, authors, publishers, prices = self.scrape_books()
+
+            if (
+                titles is None
+                or authors is None
+                or publishers is None
+                or prices is None
+            ):
+                break
+
+            for title, author, publisher, price in zip(
+                titles, authors, publishers, prices
+            ):
+                title, author, publisher, price = self.extract_book_info(
+                    title, author, publisher, price
+                )
+                if self.check_database(title, author, publisher):
+                    continue
+                else:
+                    self.upload_to_mongodb(title, author, publisher, price)
