@@ -84,6 +84,7 @@ All these steps are encapsulated in the `BookScraper` class.
 
 - **Error Handling**: The application includes error handling for common issues like connection errors, ensuring that the application can recover from these issues and continue running.
 
+- **Email Notifications**: The application can send email notifications to a specified recipient when the scraping is finished. The recipient email address and email credentials are stored in a `.env` file for security. The email message includes the number of books scraped and the website that was scraped.
 
 
 ## **Documentation**
